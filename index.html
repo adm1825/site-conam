@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conam Tech Services LLC - Tech Solutions for Hiring</title>
+    <style>
+        :root {
+            --primary-color: #0B5C98;
+            --secondary-color: #F3F4F6;
+            --accent-color: #E2E8F0;
+            --text-color: #333;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            background-color: white;
+        }
+        header {
+            background-color: white;
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-img { height: 50px; display: block; transition: transform 0.2s; }
+        .logo-img:hover { transform: scale(1.05); }
+
+        .header-controls { display: flex; align-items: center; gap: 20px; }
+        nav a { text-decoration: none; color: #555; font-weight: 500; margin-left: 15px; }
+        nav a:hover { color: var(--primary-color); }
+
+        .lang-selector {
+            padding: 5px 10px; border-radius: 5px; border: 1px solid #ccc;
+            background-color: #fff; color: #333; font-size: 1.3em; cursor: pointer;
+        }
+
+        .hero {
+            background-color: var(--secondary-color);
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 { font-size: 2.8em; margin-bottom: 20px; color: #111; max-width: 900px; margin-left: auto; margin-right: auto; }
+        .hero p { font-size: 1.2em; color: #555; max-width: 700px; margin: 0 auto 30px auto; }
+
+        .badge {
+            display: inline-block; background-color: #111; color: white;
+            padding: 5px 15px; border-radius: 20px; font-size: 0.85em;
+            font-weight: bold; margin-bottom: 20px; text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 60px 20px; }
+
+        .products-grid { display: flex; gap: 40px; margin-top: 40px; flex-wrap: wrap; justify-content: center; }
+        .product-card {
+            flex: 1; min-width: 320px; max-width: 500px; background: white;
+            border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            overflow: hidden; border-top: 5px solid var(--primary-color);
+            display: flex; flex-direction: column;
+        }
+        .product-header { padding: 30px 30px 15px 30px; text-align: center; border-bottom: 1px solid #eee; }
+        .product-header h3 { margin: 0; font-size: 1.8em; color: var(--primary-color); }
+        .product-header .niche { color: #888; font-size: 0.9em; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; display: block;}
+        .product-body { padding: 30px; flex-grow: 1; }
+        .product-body ul { list-style: none; padding: 0; margin: 0; }
+        .product-body li { margin-bottom: 15px; padding-left: 25px; position: relative; }
+        .product-body li::before { content: "✓"; position: absolute; left: 0; color: var(--primary-color); font-weight: bold; }
+
+        .support-section { background-color: #fff; text-align: center; padding: 60px 20px; border-top: 1px solid #eee; }
+        .support-card { background: var(--secondary-color); max-width: 600px; margin: 20px auto; padding: 40px; border-radius: 10px; text-align: left; }
+
+        .contact-form label { display: block; margin-bottom: 5px; font-weight: bold; color: #333; }
+        .contact-form input, .contact-form textarea {
+            width: 100%; padding: 12px; margin-bottom: 20px;
+            border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-family: inherit; font-size: 1em;
+        }
+        .contact-form input:focus, .contact-form textarea:focus { outline: none; border-color: var(--primary-color); }
+        .btn {
+            background-color: var(--primary-color); color: white; padding: 15px 30px;
+            border: none; border-radius: 5px; font-weight: bold; font-size: 1.1em; cursor: pointer;
+        }
+        .btn:hover { opacity: 0.9; }
+
+        .privacy-section { background-color: #fafafa; padding: 60px 20px; border-top: 1px solid #eee; }
+        .privacy-content { max-width: 800px; margin: 0 auto; font-size: 0.95em; color: #666; }
+
+        footer { background-color: #111; color: white; text-align: center; padding: 20px; font-size: 0.9em; }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 15px; padding: 20px; }
+            .header-controls { flex-direction: column; }
+            nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+            nav a { margin: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="#">
+        <img src="logo-empresa.jpg" alt="Conam Tech Logo" class="logo-img">
+    </a>
+    <div class="header-controls">
+        <nav>
+            <a href="#about" data-i18n="nav1">About Us</a>
+            <a href="#products" data-i18n="nav2">Our Apps</a>
+            <a href="#customer" data-i18n="nav3">Customer</a>
+        </nav>
+        <select id="seletor-idioma" class="lang-selector" onchange="window.mudarIdioma(this.value)">
+            <option value="en" selected>🇺🇸</option>
+            <option value="pt">🇧🇷</option>
+            <option value="es">🇪🇸</option>
+        </select>
+    </div>
+</header>
+
+<section id="about" class="hero">
+    <span class="badge" data-i18n="heroBadge">B2B Software Solutions</span>
+    <h1 data-i18n="heroTitle">Connecting businesses with the right workforce through technology.</h1>
+    <p data-i18n="heroDesc">Conam Tech Services LLC builds specialized platforms for contractors and employers. We don't serve end consumers; we build tools to help you find, manage, and hire the professionals your business needs to grow.</p>
+    <a href="#products" class="btn" style="text-decoration:none; display:inline-block;" data-i18n="heroBtn">Explore Our Apps</a>
+</section>
+
+<section id="products" class="container">
+    <div style="text-align: center; margin-bottom: 20px;">
+        <h2 style="font-size: 2.2em; margin-bottom: 10px;" data-i18n="prodTitle">Our Tech Portfolio</h2>
+        <p style="color: #666; font-size: 1.1em; max-width: 600px; margin: 0 auto;" data-i18n="prodDesc">Designed exclusively for employers. Find the right hands for your projects, fast and reliably.</p>
+    </div>
+
+    <div class="products-grid">
+
+        <div class="product-card">
+            <div class="product-header">
+                <h3>Helper</h3>
+                <span class="niche" data-i18n="helpNiche">Construction Industry</span>
+            </div>
+            <div class="product-body">
+                <p style="margin-top:0;" data-i18n="helpDesc">The ultimate tool for Construction Contractors. Locate and manage skilled builders and general helpers in your job site area.</p>
+                <ul>
+                    <li data-i18n="feat1"><strong>Regional Search:</strong> Find available workers near your specific construction site.</li>
+                    <li data-i18n="feat2"><strong>Reviews & Profiles:</strong> Check work history before hiring to ensure quality.</li>
+                    <li data-i18n="feat3"><strong>Cost Management:</strong> Track labor expenses per project directly in the app.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="product-header">
+                <h3 style="color: #0d9488;">HelperClean</h3>
+                <span class="niche" data-i18n="cleanNiche">Commercial & Residential Cleaning</span>
+            </div>
+            <div class="product-body">
+                <p style="margin-top:0;" data-i18n="cleanDesc">Designed for Cleaning Companies and Facility Managers. Quickly staff your cleaning contracts with verified professionals.</p>
+                <ul>
+                    <li data-i18n="feat1"><strong>Regional Search:</strong> Find available workers near your specific location.</li>
+                    <li data-i18n="feat2"><strong>Reviews & Profiles:</strong> Check work history before hiring to ensure quality.</li>
+                    <li data-i18n="cleanFeat3"><strong>Shift Management:</strong> Organize daily or weekly cleaning schedules easily.</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section id="customer" class="support-section">
+    <h2 data-i18n="supTitle">Customer Care</h2>
+    <p data-i18n="supDesc">Are you an employer using our platforms? We are here to help your business.</p>
+
+    <div class="support-card">
+        <h3 data-i18n="supBoxTitle" style="text-align:center; color:var(--primary-color);">Send us a message</h3>
+        <p data-i18n="supBoxDesc" style="text-align:center; margin-bottom: 30px;">Fill out the form below for assistance regarding Helper or HelperClean.</p>
+
+        <form class="contact-form" action="mailto:customer@conambrtech.com" method="POST" enctype="text/plain">
+            <label for="name" data-i18n="formLabelName">Name</label>
+            <input type="text" id="name" name="Name" required data-i18n-placeholder="formPlaceholderName" placeholder="Your full name">
+
+            <label for="email" data-i18n="formLabelEmail">Email</label>
+            <input type="email" id="email" name="Email" required data-i18n-placeholder="formPlaceholderEmail" placeholder="Your business email">
+
+            <label for="app" data-i18n="formLabelApp">Which app do you need help with?</label>
+            <input type="text" id="app" name="App" data-i18n-placeholder="formPlaceholderApp" placeholder="Helper or HelperClean?">
+
+            <label for="message" data-i18n="formLabelMessage">Message</label>
+            <textarea id="message" name="Message" rows="5" required data-i18n-placeholder="formPlaceholderMessage" placeholder="How can we help you?"></textarea>
+
+            <button type="submit" class="btn" style="width: 100%;" data-i18n="formBtnSend">Send Message</button>
+        </form>
+
+        <p style="text-align:center; margin-top:20px; font-size:0.9em; color:#666;">
+            <strong data-i18n="formDirectEmail">Or email us directly at:</strong> <br>
+            <a href="mailto:customer@conambrtech.com" style="color: var(--primary-color); font-weight: bold;">customer@conambrtech.com</a>
+        </p>
+    </div>
+</section>
+
+<section id="privacidade" class="privacy-section">
+    <div class="privacy-content">
+        <h2 data-i18n="privTitle">Privacy Policy</h2>
+        <p><strong data-i18n="privDate">Last updated: March 2026</strong></p>
+        <p data-i18n="privP1">Your privacy is important to us. <strong>Conam Tech Services LLC</strong> respects your privacy regarding any information we may collect through our portfolio of applications (including, but not limited to, Helper and HelperClean).</p>
+        <p data-i18n="privP2"><strong>Target Audience:</strong> Our applications are designed strictly for Business-to-Business (B2B) use, specifically for employers, contractors, and facility managers looking to hire workforce. They are not intended for consumer use.</p>
+        <p data-i18n="privP3"><strong>Location Use:</strong> For the core functioning of connecting contractors and helpers in the same region, we request access to device location data. This is used exclusively to display available professionals within the defined distance radius.</p>
+        <p data-i18n="privP4"><strong>Profile Data:</strong> User information, work history, and reviews are visible to other platform users to establish professional trust.</p>
+        <p data-i18n="privP5">To request the deletion of your account or data from any of our apps, contact us via the email provided in the support section.</p>
+    </div>
+</section>
+
+<footer>
+    <p data-i18n="footer">&copy; 2026 Conam Tech Services LLC. All rights reserved.</p>
+</footer>
+
+<script>
+    const dicionario = {
+        pt: {
+            nav1: "Sobre Nós", nav2: "Nossos Apps", nav3: "Atendimento",
+            heroBadge: "Soluções de Software B2B",
+            heroTitle: "Conectando empresas à força de trabalho certa através da tecnologia.",
+            heroDesc: "A Conam Tech Services LLC cria plataformas especializadas para empreiteiros e empregadores. Não atendemos o consumidor final; criamos ferramentas para ajudar você a encontrar, gerenciar e contratar os profissionais que sua empresa precisa para crescer.",
+            heroBtn: "Explorar Nossos Apps",
+            prodTitle: "Nosso Portfólio Tech",
+            prodDesc: "Feito exclusivamente para empregadores. Encontre as mãos certas para seus projetos, com rapidez e confiança.",
+            helpNiche: "Setor de Construção Civil",
+            helpDesc: "A ferramenta definitiva para Empreiteiros. Localize e gerencie construtores e ajudantes qualificados na região da sua obra.",
+            feat1: "<strong>Busca Regional:</strong> Encontre trabalhadores disponíveis perto do seu local exato de trabalho.",
+            feat2: "<strong>Avaliações e Perfis:</strong> Verifique o histórico de trabalho antes de contratar para garantir a qualidade.",
+            feat3: "<strong>Gestão de Custos:</strong> Controle as despesas com mão de obra por projeto direto no app.",
+            cleanNiche: "Limpeza Comercial e Residencial",
+            cleanDesc: "Feito para Empresas de Limpeza e Gerentes de Instalações. Preencha seus contratos de limpeza rapidamente com profissionais verificados.",
+            cleanFeat3: "<strong>Gestão de Turnos:</strong> Organize cronogramas de limpeza diários ou semanais com facilidade.",
+            supTitle: "Central do Cliente",
+            supDesc: "Você é um empregador usando nossas plataformas? Estamos aqui para ajudar sua empresa.",
+            supBoxTitle: "Envie-nos uma mensagem",
+            supBoxDesc: "Preencha o formulário abaixo para atendimento sobre o Helper ou HelperClean.",
+            formLabelName: "Nome", formPlaceholderName: "Seu nome completo",
+            formLabelEmail: "E-mail", formPlaceholderEmail: "Seu e-mail profissional",
+            formLabelApp: "Sobre qual aplicativo deseja falar?", formPlaceholderApp: "Helper ou HelperClean?",
+            formLabelMessage: "Mensagem", formPlaceholderMessage: "Como podemos ajudar?",
+            formBtnSend: "Enviar Mensagem",
+            formDirectEmail: "Ou envie um e-mail diretamente para:",
+            privTitle: "Política de Privacidade",
+            privDate: "Última atualização: Março de 2026",
+            privP1: "A sua privacidade é importante para nós. A <strong>Conam Tech Services LLC</strong> respeita a sua privacidade em relação a qualquer informação que possamos coletar através do nosso portfólio de aplicativos (incluindo, mas não se limitando a, Helper e HelperClean).",
+            privP2: "<strong>Público-Alvo:</strong> Nossos aplicativos são projetados estritamente para uso B2B (Business-to-Business), especificamente para empregadores, contratantes e gerentes que buscam contratar mão de obra. Eles não se destinam ao uso do consumidor final.",
+            privP3: "<strong>Uso de Localização:</strong> Para a função central de conectar empregadores e ajudantes na mesma região, solicitamos acesso à localização do dispositivo. Isso é usado exclusivamente para exibir profissionais dentro do raio definido.",
+            privP4: "<strong>Dados de Perfil:</strong> Informações do usuário, histórico e avaliações são visíveis para outros usuários da plataforma para estabelecer confiança profissional.",
+            privP5: "Para solicitar a exclusão da sua conta ou dados de qualquer um dos nossos apps, entre em contato pelo e-mail de atendimento.",
+            footer: "&copy; 2026 Conam Tech Services LLC. Todos os direitos reservados."
+        },
+        en: {
+            nav1: "About Us", nav2: "Our Apps", nav3: "Customer",
+            heroBadge: "B2B Software Solutions",
+            heroTitle: "Connecting businesses with the right workforce through technology.",
+            heroDesc: "Conam Tech Services LLC builds specialized platforms for contractors and employers. We don't serve end consumers; we build tools to help you find, manage, and hire the professionals your business needs to grow.",
+            heroBtn: "Explore Our Apps",
+            prodTitle: "Our Tech Portfolio",
+            prodDesc: "Designed exclusively for employers. Find the right hands for your projects, fast and reliably.",
+            helpNiche: "Construction Industry",
+            helpDesc: "The ultimate tool for Construction Contractors. Locate and manage skilled builders and general helpers in your job site area.",
+            feat1: "<strong>Regional Search:</strong> Find available workers near your specific work site.",
+            feat2: "<strong>Reviews & Profiles:</strong> Check work history before hiring to ensure quality.",
+            feat3: "<strong>Cost Management:</strong> Track labor expenses per project directly in the app.",
+            cleanNiche: "Commercial & Residential Cleaning",
+            cleanDesc: "Designed for Cleaning Companies and Facility Managers. Quickly staff your cleaning contracts with verified professionals.",
+            cleanFeat3: "<strong>Shift Management:</strong> Organize daily or weekly cleaning schedules easily.",
+            supTitle: "Customer Care",
+            supDesc: "Are you an employer using our platforms? We are here to help your business.",
+            supBoxTitle: "Send us a message",
+            supBoxDesc: "Fill out the form below for assistance regarding Helper or HelperClean.",
+            formLabelName: "Name", formPlaceholderName: "Your full name",
+            formLabelEmail: "Email", formPlaceholderEmail: "Your business email",
+            formLabelApp: "Which app do you need help with?", formPlaceholderApp: "Helper or HelperClean?",
+            formLabelMessage: "Message", formPlaceholderMessage: "How can we help you?",
+            formBtnSend: "Send Message",
+            formDirectEmail: "Or email us directly at:",
+            privTitle: "Privacy Policy",
+            privDate: "Last updated: March 2026",
+            privP1: "Your privacy is important to us. <strong>Conam Tech Services LLC</strong> respects your privacy regarding any information we may collect through our portfolio of applications (including, but not limited to, Helper and HelperClean).",
+            privP2: "<strong>Target Audience:</strong> Our applications are designed strictly for Business-to-Business (B2B) use, specifically for employers, contractors, and facility managers looking to hire workforce. They are not intended for consumer use.",
+            privP3: "<strong>Location Use:</strong> For the core functioning of connecting contractors and helpers in the same region, we request access to device location data. This is used exclusively to display available professionals within the defined distance radius.",
+            privP4: "<strong>Profile Data:</strong> User information, work history, and reviews are visible to other platform users to establish professional trust.",
+            privP5: "To request the deletion of your account or data from any of our apps, contact us via the email provided in the support section.",
+            footer: "&copy; 2026 Conam Tech Services LLC. All rights reserved."
+        },
+        es: {
+            nav1: "Sobre Nosotros", nav2: "Nuestras Apps", nav3: "Atención",
+            heroBadge: "Soluciones de Software B2B",
+            heroTitle: "Conectando empresas con la fuerza laboral adecuada a través de la tecnología.",
+            heroDesc: "Conam Tech Services LLC crea plataformas especializadas para contratistas y empleadores. No atendemos a consumidores finales; creamos herramientas para ayudarle a encontrar, gestionar y contratar a los profesionales que su empresa necesita.",
+            heroBtn: "Explorar Nuestras Apps",
+            prodTitle: "Nuestro Portafolio Tech",
+            prodDesc: "Diseñado exclusivamente para empleadores. Encuentre las manos adecuadas para sus proyectos de manera rápida y confiable.",
+            helpNiche: "Industria de la Construcción",
+            helpDesc: "La herramienta definitiva para Contratistas. Ubique y gestione constructores y ayudantes calificados en la zona de su obra.",
+            feat1: "<strong>Búsqueda Regional:</strong> Encuentre trabajadores disponibles cerca de su lugar exacto de trabajo.",
+            feat2: "<strong>Reseñas y Perfiles:</strong> Verifique el historial de trabajo antes de contratar para asegurar la calidad.",
+            feat3: "<strong>Gestión de Costos:</strong> Controle los gastos de mano de obra por proyecto directamente en la app.",
+            cleanNiche: "Limpieza Comercial y Residencial",
+            cleanDesc: "Diseñado para Empresas de Limpieza y Gerentes de Instalaciones. Cubra sus contratos de limpieza rápidamente con profesionales verificados.",
+            cleanFeat3: "<strong>Gestión de Turnos:</strong> Organice horarios de limpieza diarios o semanales con facilidad.",
+            supTitle: "Atención al Cliente",
+            supDesc: "¿Es usted un empleador que usa nuestras plataformas? Estamos aquí para ayudar a su empresa.",
+            supBoxTitle: "Envíenos un mensaje",
+            supBoxDesc: "Complete el formulario a continuación para obtener asistencia sobre Helper o HelperClean.",
+            formLabelName: "Nombre", formPlaceholderName: "Su nombre completo",
+            formLabelEmail: "Correo", formPlaceholderEmail: "Su correo profesional",
+            formLabelApp: "¿Con qué aplicación desea hablar?", formPlaceholderApp: "¿Helper o HelperClean?",
+            formLabelMessage: "Mensaje", formPlaceholderMessage: "¿Cómo podemos ayudarle?",
+            formBtnSend: "Enviar Mensaje",
+            formDirectEmail: "O escríbanos directamente a:",
+            privTitle: "Política de Privacidad",
+            privDate: "Última actualización: Marzo de 2026",
+            privP1: "Su privacidad es importante para nosotros. <strong>Conam Tech Services LLC</strong> respeta su privacidad respecto a cualquier información que podamos recopilar a través de nuestro portafolio de aplicaciones (incluyendo, pero no limitado a, Helper y HelperClean).",
+            privP2: "<strong>Público Objetivo:</strong> Nuestras aplicaciones están diseñadas estrictamente para uso B2B (Business-to-Business), específicamente para empleadores, contratistas y gerentes que buscan contratar mano de obra. No están destinadas al consumidor final.",
+            privP3: "<strong>Uso de Ubicación:</strong> Para la función central de conectar empleadores y ayudantes en la misma región, solicitamos acceso a la ubicación del dispositivo. Esto se usa exclusivamente para mostrar profesionales dentro del radio definido.",
+            privP4: "<strong>Datos de Perfil:</strong> La información del usuario, historial y reseñas son visibles para otros usuarios de la plataforma para establecer confianza profesional.",
+            privP5: "Para solicitar la eliminación de su cuenta o datos de cualquiera de nuestras aplicaciones, contáctenos a través del correo de atención.",
+            footer: "&copy; 2026 Conam Tech Services LLC. Todos los derechos reservados."
+        }
+    };
+
+    window.mudarIdioma = function(lang) {
+        const elements = document.querySelectorAll('[data-i18n]');
+        elements.forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (dicionario[lang] && dicionario[lang][key]) {
+                el.innerHTML = dicionario[lang][key];
+            }
+        });
+
+        const placeholders = document.querySelectorAll('[data-i18n-placeholder]');
+        placeholders.forEach(el => {
+            const key = el.getAttribute('data-i18n-placeholder');
+            if (dicionario[lang] && dicionario[lang][key]) {
+                el.placeholder = dicionario[lang][key];
+            }
+        });
+
+        document.documentElement.lang = lang;
+    };
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const seletor = document.getElementById('seletor-idioma');
+        if(seletor) {
+            seletor.addEventListener('change', function() {
+                window.mudarIdioma(this.value);
+            });
+        }
+    });
+</script>
+</body>
+</html>
