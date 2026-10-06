@@ -34935,7 +34935,13 @@ case"not-found":return"usu\xe1rio n\xe3o encontrado"
 case"duplicate":return"n\xfamero repetido na lista"
 case"recent":return"j\xe1 recebeu mensagem nas \xfaltimas 24 h"
 case"rejected-number":return"o WhatsApp recusou o n\xfamero (talvez n\xe3o tenha WhatsApp)"
-case"evolution-unreachable":return"n\xe3o foi poss\xedvel falar com o WhatsApp"
+case"evolution-unreachable":return"n\xe3o foi poss\xedvel falar com o WhatsApp (causa n\xe3o identificada)"
+case"evolution-invalid-url":return"o endere\xe7o da Evolution (EVOLUTION_URL) est\xe1 mal formatado \u2014 precisa come\xe7ar com https://"
+case"evolution-invalid-key":return"a chave da Evolution (EVOLUTION_APIKEY) tem caracteres inv\xe1lidos, como espa\xe7o ou quebra de linha"
+case"evolution-dns":return"o endere\xe7o da Evolution n\xe3o existe (confira EVOLUTION_URL)"
+case"evolution-refused":return"o servidor da Evolution recusou a conex\xe3o \u2014 est\xe1 fora do ar?"
+case"evolution-timeout":return"o servidor da Evolution n\xe3o respondeu a tempo"
+case"evolution-tls":return"problema no certificado de seguran\xe7a do servidor da Evolution"
 case"evolution-not-configured":return"WhatsApp n\xe3o configurado no servidor"
 default:if(B.c.cQ(a,"evolution-http-"))return"o servi\xe7o de WhatsApp recusou o envio ("+B.c.dj(a,15)+")"
 return a}},
@@ -119081,7 +119087,7 @@ return}this.d.aEY(new A.Wp(A.b1x(s),B.ZP,null,!1))},
 G(a){var s=null,r=t.p,q=A.c1(A.b([A.akB(A.ci(6),A.arP("assets/logo.png",new A.aRx(),B.bV,28,s,28)),B.wW,B.a_B],r),B.G,B.p,B.x,0),p=A.b([],r),o=this.gK2()
 if(o.gEV()!=null){o=o.gEV()
 o.toString
-p.push(new A.aF(B.Zh,A.fb(A.iT(A.bK(A.b([A.a5(o,s,s,s,s,B.amc,s,s,s),A.a5("06/10 14:06",s,s,s,s,B.aky,s,s,s)],r),B.hn,B.k6,B.x),"Vers\xe3o publicada: 06/10 14:06"),s,s),s))}p.push(A.jm(s,s,s,B.a13,s,s,new A.aRy(a),s,s,s,"Relat\xf3rios"))
+p.push(new A.aF(B.Zh,A.fb(A.iT(A.bK(A.b([A.a5(o,s,s,s,s,B.amc,s,s,s),A.a5("06/10 15:55",s,s,s,s,B.aky,s,s,s)],r),B.hn,B.k6,B.x),"Vers\xe3o publicada: 06/10 15:55"),s,s),s))}p.push(A.jm(s,s,s,B.a13,s,s,new A.aRy(a),s,s,s,"Relat\xf3rios"))
 p.push(A.jm(s,s,s,B.Ap,s,s,new A.aRz(),s,s,s,"Sair"))
 p.push(B.cs)
 return A.a1R(A.b0o(p,s,s,s,s,s,s,s,q),s,A.b9q(new A.aRA(this),this.ga03().aLH(),t.Eb))},
